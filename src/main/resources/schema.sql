@@ -21,3 +21,29 @@ create table Drivers (
     request_id bigint,
     user_id bigint not null
 );
+create table Trips (
+    id identity primary key,
+    start_date date not null,
+    end_date date not null,
+    status varchar(50) not null,
+    driver_id bigint
+);
+create table Requests (
+    id identity primary key,
+    description varchar(200) not null,
+    request_date date not null,
+    distance varchar(50) not null,
+    required_capacity varchar(50) not null,
+    required_type varchar(50) not null,
+    status varchar(50) not null
+);
+create table Users (
+    id identity primary key,
+    login varchar(50) not null,
+    password varchar(100) not null,
+    role_id bigint not null
+);
+create table Roles (
+    id identity primary key,
+    role_name varchar(50) not null
+);

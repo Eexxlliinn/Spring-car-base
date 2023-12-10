@@ -6,5 +6,25 @@
 </head>
 <body>
     <h1>Driver set information page</h1>
+    <form th:action="@{/cabinet/set-info}" method="post">
+
+        <label th:for="fullname">Full name: </label>
+        <input type="text" name="fullname"><br><br>
+
+        <label th:for="age">Age: </label>
+        <input type="text" name="age"><br><br>
+
+        <label th:for="license_number">License number: </label>
+        <input type="text" name="license_number"><br><br>
+
+        <label th:for="category">Category: </label>
+        <input type="text" name="category"><br><br>
+
+        <label th:for="phone_number">Phone number: </label>
+        <input type="text" name="phone_number"><br><br>
+
+        <input type="button" onclick="history.back();" value="Back">
+        <input type="submit" value="Save">
+    </form>
 </body>
 </html>

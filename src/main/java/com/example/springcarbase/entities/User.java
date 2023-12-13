@@ -16,6 +16,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @RequiredArgsConstructor
+@Table(name = "Users")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1;
@@ -29,7 +30,8 @@ public class User implements UserDetails {
     private final String password;
 
     @ManyToOne
-    private Role role_id;
+    @JoinColumn(name = "role", referencedColumnName = "id")
+    private final Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

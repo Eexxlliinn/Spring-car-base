@@ -3,7 +3,7 @@ drop table Drivers if exists cascade;
 drop table Trips if exists cascade;
 drop table Requests if exists cascade;
 drop table Users if exists cascade;
-drop table Roles if exists cascade;
+drop table Role if exists cascade;
 create table Cars (
     id identity primary key,
     car_number varchar(50) not null,
@@ -41,9 +41,10 @@ create table Users (
     id identity primary key,
     login varchar(50) not null,
     password varchar(100) not null,
-    role_id bigint not null
+    role bigint not null
 );
-create table Roles (
+create table Role (
     id identity primary key,
     role_name varchar(50) not null
 );
+alter table Users add foreign key (role) references Role(id);

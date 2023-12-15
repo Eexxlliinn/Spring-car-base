@@ -1,14 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Car base</title>
+    <title>Requests - Car Base</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .request-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .request-info {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: left;
+        }
+
+        .request-info p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .take-button, .complete-button {
+            background-color: #28a745;
+        }
+
+        .take-button:hover, .complete-button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Request information page:</h1>
+<h1>Requests</h1>
 
+<div class="request-container">
 
+    <div class="request-info">
+        <p><strong>Description:</strong> Another request</p>
+        <p><strong>Request Date:</strong> 2023-12-16</p>
+        <p><strong>Distance:</strong> 20 miles</p>
+        <p><strong>Required Capacity:</strong> 2 passengers</p>
+        <p><strong>Required Type:</strong> Sedan </p>
+        <p><strong>Status:</strong> Pending </p>
 
-    <input type="button" onclick="history.back();" value="Back">
+        <br>
+        <input type="button" class="complete-button" value="Done">
+    </div>
+</div>
+
+<br>
+
+<input type="button" onclick="history.back();" value="Back">
 </body>
+
 </html>

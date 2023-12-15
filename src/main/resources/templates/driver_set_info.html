@@ -1,30 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Car base</title>
+    <title>Driver Set Information - Car Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            background-color: #ccc;
+            color: #333;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .back-button {
+            background-color: #ccc;
+            color: #333;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .save-button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .styled-select {
+            display: inline-block;
+            position: relative;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .styled-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 110%;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .styled-select:after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: -5px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Driver set information page</h1>
-    <form th:action="@{/cabinet/set-info}" method="post">
+<h1>Driver Set Information Page</h1>
+<form th:action="@{/cabinet/set-info}" method="post" id="driverForm">
+    <fieldset>
+        <legend>Driver Information</legend>
 
-        <label th:for="fullname">Full name: </label>
-        <input type="text" name="fullname"><br><br>
+        <label for="full_name">Full name:</label>
+        <input type="text" id="full_name" name="full_name" required><br>
 
-        <label th:for="age">Age: </label>
-        <input type="text" name="age"><br><br>
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required><br>
 
-        <label th:for="license_number">License number: </label>
-        <input type="text" name="license_number"><br><br>
+        <label for="license_number">License number:</label>
+        <input type="text" id="license_number" name="license_number" required><br>
 
-        <label th:for="category">Category: </label>
-        <input type="text" name="category"><br><br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required><br>
 
-        <label th:for="phone_number">Phone number: </label>
-        <input type="text" name="phone_number"><br><br>
+        <label for="phone_number">Phone number:</label>
+        <input type="text" id="phone_number" name="phone_number" required><br>
 
-        <input type="button" onclick="history.back();" value="Back">
-        <input type="submit" value="Save">
-    </form>
+        <label for="car">Cars:</label>
+        <div class="styled-select">
+            <select id="car" name="car_id" required>
+                <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.model}"></option>
+            </select>
+        </div>
+
+    </fieldset>
+
+    <input type="submit" class="save-button" value="Save">
+    <input type="button" class="back-button" onclick="history.back();" value="Back">
+
+</form>
 </body>
+
 </html>

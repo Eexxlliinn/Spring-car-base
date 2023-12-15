@@ -1,10 +1,16 @@
 package com.example.springcarbase.entities;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Table(name = "Drivers")
 public class Driver {
 
     @Id
@@ -22,11 +28,22 @@ public class Driver {
     private String phone_number;
 
     @OneToOne
-    private Car car_id;
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    private Car car;
 
     @OneToOne
+    @JoinColumn(name = "request_id", referencedColumnName = "id")
     private Request request_id;
 
     @OneToOne
-    private User user_id;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    public Driver(String fullName, String age, String licenseNumber, String category, String phoneNumber) {
+        this.full_name = fullName;
+        this.age = age;
+        this.license_number = licenseNumber;
+        this.category = category;
+        this.phone_number = phoneNumber;
+    }
 }

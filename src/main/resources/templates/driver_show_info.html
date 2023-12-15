@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Car base</title>
+    <title>Driver Show Information - Car Base</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .driver-info {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: inline-block;
+            width: 300px;
+            text-align: left;
+        }
+
+        .driver-info p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Driver show information page:</h1>
+<h1>Driver Information</h1>
+
+<div class="driver-info" th:if="${driver != null}">
+    <p><strong>Full Name:</strong> <span th:text="${driver.full_name} ?: 'N/A'"></span></p>
+    <p><strong>Age:</strong> <span th:text="${driver.age} ?: 'N/A'"></span></p>
+    <p><strong>License Number:</strong> <span th:text="${driver.license_number} ?: 'N/A'"></span></p>
+    <p><strong>Category:</strong> <span th:text="${driver.category} ?: 'N/A'"></span></p>
+    <p><strong>Phone Number:</strong> <span th:text="${driver.phone_number} ?: 'N/A'"></span></p>
+</div>
+
+<div th:unless="${driver != null}">
+    <p>No driver information available</p>
+</div>
 
 
+<br><br>
 
-    <input type="button" onclick="history.back();" value="Back">
+<input type="button" onclick="history.back();" value="Back">
 </body>
+
 </html>

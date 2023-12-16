@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private final String login;
+    private final String username;
 
     private final String password;
 
@@ -40,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override

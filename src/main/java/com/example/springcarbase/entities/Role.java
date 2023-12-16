@@ -1,10 +1,14 @@
 package com.example.springcarbase.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name = "Roles")
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Role {
 
     @Id
@@ -12,5 +16,5 @@ public class Role {
     @Column(name = "id")
     private Long id;
 
-    private String role_name;
+    private String roleName;
 }

@@ -1,4 +1,4 @@
-package com.example.springcarbase.security;
+package com.example.springcarbase.forms;
 
 import com.example.springcarbase.entities.Role;
 import com.example.springcarbase.entities.User;
@@ -9,14 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Data
 @Slf4j
 public class RegistrationForm {
-    private String login;
+    private String username;
     private String password;
 
     public User toUser(PasswordEncoder passwordEncoder) {
         Role role = new Role();
         role.setId(1L);
-        role.setRole_name("USER");
-        log.info("Role: {}", role);
-        return new User(login, passwordEncoder.encode(password), role);
+        return new User(username, passwordEncoder.encode(password), role);
     }
 }

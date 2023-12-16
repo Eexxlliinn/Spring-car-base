@@ -122,12 +122,6 @@
         <label for="phone_number">Phone number:</label>
         <input type="text" id="phone_number" name="phone_number" required><br>
 
-        <label for="car">Cars:</label>
-        <div class="styled-select">
-            <select id="car" name="car_id" required>
-                <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.model}"></option>
-            </select>
-        </div>
 
     </fieldset>
 

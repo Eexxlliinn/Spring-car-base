@@ -1,5 +1,6 @@
 package com.example.springcarbase.security;
 
+import com.example.springcarbase.forms.RegistrationForm;
 import com.example.springcarbase.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

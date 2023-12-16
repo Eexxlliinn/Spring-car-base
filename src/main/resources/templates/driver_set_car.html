@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Driver Set Information - Car Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            background-color: #ccc;
+            color: #333;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .back-button {
+            background-color: #ccc;
+            color: #333;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .save-button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .styled-select {
+            display: inline-block;
+            position: relative;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .styled-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 110%;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .styled-select:after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: -5px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Driver Set Car Page</h1>
+<form th:action="@{/cabinet/set-car}" method="post" id="driverForm">
+    <fieldset>
+        <legend>Driver Car</legend>
+
+        <label for="car">Cars:</label>
+        <div class="styled-select">
+            <select id="car" name="car_id" required>
+                <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.model}"></option>
+            </select>
+        </div>
+
+    </fieldset>
+
+    <input type="submit" class="save-button" value="Save">
+    <input type="button" class="back-button" onclick="history.back();" value="Back">
+
+</form>
+</body>
+
+</html>

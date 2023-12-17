@@ -30,12 +30,12 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepo) {
-        return login -> {
-            User user = userRepo.findByLogin(login);
+        return username -> {
+            User user = userRepo.findByUsername(username);
             if (user != null) {
                 return user;
             } else {
-                throw new UsernameNotFoundException("User '" + login + "' not found");
+                throw new UsernameNotFoundException("User '" + username + "' not found");
             }
         };
     }
@@ -68,6 +68,7 @@ public class SecurityConfig {
                                 .logoutSuccessUrl("/")
                                 .permitAll()
                 );
+
         return http.build();
     }
     private CsrfTokenRepository csrfTokenRepository() {

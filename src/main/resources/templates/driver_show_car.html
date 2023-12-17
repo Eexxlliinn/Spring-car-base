@@ -44,6 +44,9 @@
             font-size: 16px;
             color: #333;
         }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -52,7 +55,7 @@
 
 <div class="car-info" th:if="${driver != null && car != null}">
     <p><strong>Owner:</strong> <span th:text="${driver.full_name} ?: 'N/A'"></span></p>
-    <p><strong>Car number:</strong> <span th:text="${car.car_number} ?: 'N/A'"></span></p>
+    <p><strong>Car number:</strong> <span th:text="${car.carNumber} ?: 'N/A'"></span></p>
     <p><strong>Model:</strong> <span th:text="${car.model} ?: 'N/A'"></span></p>
     <p><strong>Capacity:</strong> <span th:text="${car.capacity} ?: 'N/A'"></span></p>
 </div>
@@ -62,7 +65,7 @@
 </div>
 <br><br>
 
-<input type="button" onclick="history.back();" value="Back">
+<input type="button" class="back-button" onclick="history.back();" value="Back">
 </body>
 
 </html>

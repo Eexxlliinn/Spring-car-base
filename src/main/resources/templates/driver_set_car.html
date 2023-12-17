@@ -43,6 +43,7 @@
             padding: 8px;
             margin-bottom: 10px;
             box-sizing: border-box;
+            cursor: pointer;
         }
 
         input[type="button"] {
@@ -52,23 +53,20 @@
             margin-right: 10px;
         }
 
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
 
         .back-button {
             background-color: #ccc;
             color: #333;
-            cursor: pointer;
             margin-right: 10px;
         }
 
-        .save-button {
-            background-color: #007bff;
+        input[type="submit"] {
+            background-color: #28a745;
             color: white;
-            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
         }
 
         .styled-select {
@@ -98,6 +96,18 @@
             transform: translateY(-50%);
             pointer-events: none;
         }
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -110,7 +120,7 @@
         <label for="car">Cars:</label>
         <div class="styled-select">
             <select id="car" name="car_id" required>
-                <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.model}"></option>
+                <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.id + '. ' + car.model}"></option>
             </select>
         </div>
 

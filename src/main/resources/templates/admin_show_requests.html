@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View and Create Requests - Car Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input, textarea {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ccc;
+            border: none;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>View Requests</h1>
+
+<h2>Existing Requests</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Distance</th>
+        <th>Required Capacity</th>
+        <th>Required Type</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request : ${requests}">
+        <td th:text="${request.description}"></td>
+        <td th:text="${request.getRequestDate}"></td>
+        <td th:text="${request.distance}"></td>
+        <td th:text="${request.getRequiredCapacity}"></td>
+        <td th:text="${request.getRequiredType}"></td>
+        <td th:text="${request.status}"></td>
+    </tr>
+
+    </tbody>
+</table>
+<input type="button" class="back-button" onclick="history.back();" value="Back">
+
+</body>
+</html>

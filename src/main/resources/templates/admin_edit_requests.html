@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View and Create Requests - Car Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input, textarea {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ccc;
+            border: none;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Edit Requests</h1>
+
+<form th:action="@{/admin-cabinet/edit-requests}" method="post" onsubmit="return validateRequestForm()">
+
+    <label for="request">Requests:</label>
+    <div class="styled-select">
+        <select id="request" name="request_id" onchange="toggleRequestFields()" required>
+            <option th:each="request : ${requests}" th:value="${request.id}" th:text="${request.id + '. ' + request.description}"></option>
+            <option value="newRequest">Add new request</option>
+        </select>
+    </div>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4"></textarea>
+
+    <label for="requestDate">Date:</label>
+    <input type="date" id="requestDate" name="requestDate">
+
+    <label for="distance">Distance:</label>
+    <input type="text" id="distance" name="distance">
+
+    <label for="requiredCapacity">Required Capacity:</label>
+    <input type="text" id="requiredCapacity" name="requiredCapacity">
+
+    <label for="requiredType">Required Type:</label>
+    <input type="text" id="requiredType" name="requiredType">
+
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+        <option value="Available">Available</option>
+        <option value="Not available">Not available</option>
+    </select>
+
+    <input type="submit" value="Edit Request">
+    <input type="button" class="back-button" onclick="history.back();" value="Back">
+
+    <script>
+        function toggleRequestFields() {
+            var requestDropdown = document.getElementById("request");
+            var descriptionField = document.getElementById("description");
+            var dateField = document.getElementById("date");
+            var distanceField = document.getElementById("distance");
+            var requiredCapacityField = document.getElementById("requiredCapacity");
+            var requiredTypeField = document.getElementById("requiredType");
+
+            // Если выбран пункт "Add new request", установить атрибут required для полей
+            if (requestDropdown.value === "newRequest") {
+                descriptionField.required = true;
+                dateField.required = true;
+                distanceField.required = true;
+                requiredCapacityField.required = true;
+                requiredTypeField.required = true;
+            } else {
+                descriptionField.required = false;
+                dateField.required = false;
+                distanceField.required = false;
+                requiredCapacityField.required = false;
+                requiredTypeField.required = false;
+            }
+        }
+
+        // Валидация формы перед отправкой
+        function validateRequestForm() {
+            var requestDropdown = document.getElementById("request");
+
+            // Если выбран пункт "Add new request", убедитесь, что заполнены обязательные поля
+            if (requestDropdown.value === "newRequest") {
+                var descriptionField = document.getElementById("description");
+                var dateField = document.getElementById("date");
+                var distanceField = document.getElementById("distance");
+                var requiredCapacityField = document.getElementById("requiredCapacity");
+                var requiredTypeField = document.getElementById("requiredType");
+
+                if (descriptionField.value.trim() === "" || dateField.value.trim() === "" || distanceField.value.trim() === "" ||
+                    requiredCapacityField.value.trim() === "" || requiredTypeField.value.trim() === "") {
+                    alert("Please fill in all required fields for the new request.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
+
+</form>
+
+</body>
+</html>

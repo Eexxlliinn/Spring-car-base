@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Cabinet - Car Base</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            display: block;
+            margin: 15px 0;
+            padding: 10px;
+            width: 150px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Admin Cabinet</h1>
+<div class="container">
+    <a th:href="@{/admin-cabinet/show-requests}">Show Requests</a>
+    <a th:href="@{/admin-cabinet/edit-requests}">Edit Requests</a>
+    <a th:href="@{/admin-cabinet/assign-requests}">Assign Request</a>
+    <a th:href="@{/admin-cabinet/show-cars}">Show Cars</a>
+    <a th:href="@{/admin-cabinet/edit-cars}">Edit Cars</a>
+</div>
+</body>
+</html>

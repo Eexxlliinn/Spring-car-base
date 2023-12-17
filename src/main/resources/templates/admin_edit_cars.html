@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Cars - Car Base</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      margin-top: 10px;
+      color: #555;
+    }
+
+    input {
+      margin-top: 10px;
+      padding: 10px;
+      cursor: pointer;
+      background-color: #ccc;
+      border: none;
+      color: #333;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+    .back-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+    .styled-select {
+      display: inline-block;
+      position: relative;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .styled-select select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 8px;
+      width: 110%;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .styled-select:after {
+      content: '\25BC';
+      position: absolute;
+      top: 50%;
+      right: -5px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+<h1>Edit Car Information</h1>
+
+<form th:action="@{/admin-cabinet/edit-cars}" th:method="post" onsubmit="return validateForm()">
+
+  <label for="car">Cars:</label>
+  <div class="styled-select">
+    <select id="car" name="car_id" onchange="toggleFields()" required>
+      <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.id + '. ' + car.model}"></option>
+      <option value="newCar">Add new car</option>
+    </select>
+  </div>
+
+  <label for="carNumber">Car Number:</label>
+  <input type="text" id="carNumber" name="carNumber" placeholder="Enter Car Number" required>
+
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model" placeholder="Enter Car Model" required>
+
+  <label for="capacity">Capacity:</label>
+  <input type="text" id="capacity" name="capacity" placeholder="Enter Car Capacity" required>
+
+  <label for="status">Status:</label>
+  <select id="status" name="status">
+    <option value="Available">Available</option>
+    <option value="Not available">Not available</option>
+  </select>
+  <input type="submit" value="Submit">
+  <input type="button" class="back-button" onclick="history.back();" value="Back">
+
+  <script>
+    function toggleFields() {
+      var carDropdown = document.getElementById("car");
+      var carNumberField = document.getElementById("carNumber");
+      var modelField = document.getElementById("model");
+      var capacityField = document.getElementById("capacity");
+
+      // Если выбран пункт "Add new car", установить атрибут required для полей
+      if (carDropdown.value === "newCar") {
+        carNumberField.required = true;
+        modelField.required = true;
+        capacityField.required = true;
+      } else {
+        carNumberField.required = false;
+        modelField.required = false;
+        capacityField.required = false;
+      }
+    }
+
+    // Валидация формы перед отправкой
+    function validateForm() {
+      var carDropdown = document.getElementById("car");
+
+      // Если выбран пункт "Add new car", убедитесь, что заполнены обязательные поля
+      if (carDropdown.value === "newCar") {
+        var carNumberField = document.getElementById("carNumber");
+        var modelField = document.getElementById("model");
+        var capacityField = document.getElementById("capacity");
+
+        if (carNumberField.value.trim() === "" || modelField.value.trim() === "" || capacityField.value.trim() === "") {
+          alert("Please fill in all required fields for the new car.");
+          return false;
+        }
+      }
+
+      return true;
+    }
+  </script>
+
+</form>
+</body>
+</html>
